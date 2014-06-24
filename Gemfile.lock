@@ -53,6 +53,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.3.5)
     multi_json (1.10.1)
+    netrc (0.7.7)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -75,6 +76,10 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    rest_client (1.7.3)
+      netrc (~> 0.7.7)
+    rspotify (0.6.0)
+      rest_client (~> 1.7)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -117,6 +122,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.1.1)
+  rspotify
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
