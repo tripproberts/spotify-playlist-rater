@@ -1,3 +1,3 @@
 module Exceptions
-  class HipsterCalculatorError < StandardError; end
+  class HipsterScoreCalculatorError < StandardError; end
 end

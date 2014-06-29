@@ -1,4 +1,4 @@
-class HipsterCalculator
+class HipsterScoreCalculator
 
   def self.score_playlists_for(user_id)
     user = RSpotify::User.find(user_id)
@@ -30,7 +30,7 @@ class HipsterCalculator
       end
       return score / playlist.tracks.count
     else
-      raise HipsterCalculatorError.new("Can't calculate hipster score for empty playlist")
+      raise HipsterScoreCalculatorError.new("Can't calculate hipster score for empty playlist")
     end
   end
 
@@ -41,7 +41,7 @@ class HipsterCalculator
       artists_score = score_artists(track.artists)
       return (0.5) * track_score + (0.5) * artists_score
     else
-      raise HipsterCalculatorError.new("Can't calculate hipster score for nil track")
+      raise HipsterScoreCalculatorError.new("Can't calculate hipster score for nil track")
     end
   end
 
@@ -53,7 +53,7 @@ class HipsterCalculator
       end
       return score / artists.length
     else
-      raise HipsterCalculatorError.new("Can't calculate hipster score for nil artist")
+      raise HipsterScoreCalculatorError.new("Can't calculate hipster score for nil artist")
     end
   end
 
