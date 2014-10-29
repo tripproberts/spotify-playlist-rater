@@ -2,14 +2,11 @@ $('select#playlists').on('click', 'option', function() {
 
   var option = $(this);
 
-  var post = $.post("/hipster_scores", {
-    owner_id: $(this).attr('data-owner-id'),
-    playlist_id: $(this).attr('data-id')
-  });
+  var get = $.get("/hipster_scores?owner_id=" + $(this).attr('data-owner-id') + "&playlist_id=" + $(this).attr('data-id'));
 
-  post.done(function(data) {
+  get.done(function(data) {
     $.each(data, function(i, val) {
-      $('ul#tracks').append('<li>' + option.text() + " - " + val + '</li>');
+      $('ul#tracks').append('<li>' + option.text() + " - " + val["score"] + '</li>');
     });
   });
 
