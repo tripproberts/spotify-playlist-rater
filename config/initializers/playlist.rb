@@ -1,5 +1,26 @@
 module RSpotify
   class Playlist < Base
+
+    def initialize(options = {})
+      @collaborative = options['collaborative']
+      @description   = options['description']
+      @followers     = options['followers']
+      @images        = options['images']
+      @name          = options['name']
+      @public        = options['public']
+      @snapshot_id   = options['snapshot_id']
+
+      @owner = if options['owner']
+                 User.new options['owner']
+               end
+
+      @tracks_cache = if options['tracks'] && options['tracks']['items']
+                        options['tracks']['items'].map { |i| Track.new i['track'] }
+                      end
+
+      super(options)
+    end
+
     def tracks(offset: 0)
 
       if @tracks_cache
