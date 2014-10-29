@@ -1,11 +1,12 @@
 class HipsterScoresController < ApplicationController
+  include ActionController::Live
   before_filter :ensure_spotify_authorized
 
   def show
     @hipster_score = HipsterScore.where(hipster_score_params).first_or_create
     render(
       json: Jbuilder.encode do |j|
-        j.score @hipster_score.score
+        j.score @hipster_score.refresh_score
         j.playlist_id @hipster_score.playlist_id
         j.owner_id @hipster_score.owner_id
       end,
