@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029070422) do
-
-  create_table "spotify_sessions", force: true do |t|
-    t.string "refresh_token"
-  end
+ActiveRecord::Schema.define(version: 20141029203902) do
 
   create_table "users", force: true do |t|
     t.text     "spotify_hash"
