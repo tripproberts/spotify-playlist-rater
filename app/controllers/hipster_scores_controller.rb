@@ -5,7 +5,9 @@ class HipsterScoresController < ApplicationController
     @hipster_score = HipsterScore.where(hipster_score_params).first_or_create
     render(
       json: Jbuilder.encode do |j|
-          j.hipster_score @hipster_score
+        j.score @hipster_score.score
+        j.playlist_id @hipster_score.playlist_id
+        j.owner_id @hipster_score.owner_id
       end,
       status: 200
     )
