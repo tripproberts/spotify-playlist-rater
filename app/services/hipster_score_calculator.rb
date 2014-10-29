@@ -1,7 +1,6 @@
 class HipsterScoreCalculator
 
-  def self.score_playlists_for(user_id)
-    user = RSpotify::User.find(user_id)
+  def self.score_playlists_for(user)
     scores = []
     playlists = user.playlists
     playlists.each do |playlist|
@@ -16,8 +15,7 @@ class HipsterScoreCalculator
     return scores
   end
 
-  def self.score_playlist(user, playlist_id)
-    playlist = RSpotify::Playlist.find(user, playlist_id)
+  def self.score_playlist(playlist)
     score = 0
     track_count = playlist.tracks.count
     if track_count > 0
@@ -34,9 +32,8 @@ class HipsterScoreCalculator
     end
   end
 
-  def self.score_track(track_id)
-    if track_id !=nil
-      track = RSpotify::Track.find(track_id)
+  def self.score_track(track)
+    if track != nil
       track_score = track.popularity
       artists_score = score_artists(track.artists)
       return (0.5) * track_score + (0.5) * artists_score
@@ -49,7 +46,7 @@ class HipsterScoreCalculator
     if artists != nil
       score = 0
       artists.each do |artist|
-        score += score_artist(artist.id)
+        score += score_artist(artist)
       end
       return score / artists.length
     else
@@ -57,8 +54,7 @@ class HipsterScoreCalculator
     end
   end
 
-  def self.score_artist(artist_id)
-    artist = RSpotify::Artist.find(artist_id)
+  def self.score_artist(artist)
     artist.popularity
   end
 
