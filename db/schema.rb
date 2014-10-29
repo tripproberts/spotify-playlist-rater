@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029212457) do
+ActiveRecord::Schema.define(version: 20141029224129) do
 
   create_table "hipster_scores", force: true do |t|
     t.float    "score"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20141029212457) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "playlist_snapshot_id"
+    t.string   "playlist_name"
+    t.string   "owner_name"
   end
 
   create_table "users", force: true do |t|
