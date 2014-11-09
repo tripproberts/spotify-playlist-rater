@@ -74,6 +74,8 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     pg (0.17.1)
+    puma (2.9.1)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -95,6 +97,7 @@ GEM
     rake (10.3.2)
     rdoc (4.1.2)
       json (~> 1.4)
+    redis (3.1.0)
     rest_client (1.8.1)
       netrc (~> 0.7.7)
     rspotify (1.5.1)
@@ -139,7 +142,9 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg
+  puma
   rails
+  redis
   rspotify
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
