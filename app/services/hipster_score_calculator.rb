@@ -26,7 +26,8 @@ class HipsterScoreCalculator
           --track_count
         end
       end
-      return score / playlist.tracks.count
+      normalized = (score / playlist.tracks.count) / 70.70588235294117
+      return (1 - normalized) * 100
     else
       raise HipsterScoreCalculatorError.new("Can't calculate hipster score for empty playlist")
     end
