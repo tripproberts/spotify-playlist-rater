@@ -1,5 +1,4 @@
 class HipsterScoresController < ApplicationController
-  include ActionController::Live
   before_filter :ensure_spotify_authorized
 
   def create
