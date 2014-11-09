@@ -2,9 +2,13 @@ $('select#playlists').on('click', 'option', function() {
 
   var option = $(this);
 
-  var get = $.get("/hipster_scores?owner_id=" + $(this).attr('data-owner-id') + "&playlist_id=" + $(this).attr('data-id'));
+  var post = $.post("/hipster_scores",
+                    {
+                      owner_id: $(this).attr('data-owner-id'),
+                      playlist_id: $(this).attr('data-id')
+                    });
 
-  get.done(function(data) {
+  post.done(function(data) {
     $('h1#score').html(option.text() + " - " + data["score"]);
   });
 
