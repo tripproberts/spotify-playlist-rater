@@ -1,6 +1,6 @@
 class HipsterScore < ActiveRecord::Base
 
-  scope :recent, ->(num) { order('created_at DESC').limit(num) }
+  scope :recent, ->(num) { order('updated_at DESC').limit(num) }
 
   before_save :calculate_hipster_score_and_get_snapshot_id
 
