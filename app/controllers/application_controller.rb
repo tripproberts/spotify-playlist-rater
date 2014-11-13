@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_user
+    User.find(cookies.signed[:hipster])
+  end
+
   def current_spotify_user
     user = User.find(cookies.signed[:hipster])
     RSpotify::User.new(user.spotify_hash)

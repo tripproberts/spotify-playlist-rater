@@ -39,12 +39,28 @@ function updateRecentList(data) {
   var playlist_name = data.playlist_name;
   var owner_name = data.owner_name;
   var score = data.score;
-  $('ul#recent').prepend(
-    "<li>" +
-    playlist_name +
-    " by " +
-    owner_name +
-    " - " +
-    score
-  );
+  var spotify_url = data.spotify_url;
+  if (spotify_url) {
+    $('ul#recent').prepend(
+      "<li>" +
+      "<a target='_blank' href='" +
+      spotify_url +
+      "'>" +
+      playlist_name +
+      "</a>" +
+      " by " +
+      owner_name +
+      " - " +
+      score
+    );
+  } else {
+    $('ul#recent').prepend(
+      "<li>" +
+      playlist_name +
+      " by " +
+      owner_name +
+      " - " +
+      score
+    );
+  }
 }

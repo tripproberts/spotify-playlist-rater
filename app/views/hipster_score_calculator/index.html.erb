@@ -16,7 +16,11 @@
     <div class="col-md-6">
       <ul id="recent">
         <% HipsterScore.recent(10).each do |hipster_score| %>
-          <li><%= hipster_score.playlist_name %> by <%= hipster_score.owner_name %> - <%= hipster_score.score %></li>
+          <% if hipster_score.spotify_url.blank? %>
+            <li><%= hipster_score.playlist_name %> by <%= hipster_score.owner_name %> - <%= hipster_score.score %></li>
+          <% else %>
+            <li><a target="_blank" href="<%=hipster_score.spotify_url%>"><%= hipster_score.playlist_name %></a> by <%= hipster_score.owner_name %> - <%= hipster_score.score %></li>
+          <% end %>
         <% end %>
       </ul>
     </div>

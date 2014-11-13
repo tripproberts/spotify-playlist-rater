@@ -1,5 +1,7 @@
 class HipsterScore < ActiveRecord::Base
 
+  belongs_to :user
+
   scope :recent, ->(num) { order('updated_at DESC').limit(num) }
 
   before_save :calculate_hipster_score_and_get_snapshot_id
@@ -15,12 +17,16 @@ class HipsterScore < ActiveRecord::Base
   def calculate_score
     RSpotify.authenticate(ENV["SPOTIFY_ID"], ENV["SPOTIFY_SECRET"])
     @playlist = RSpotify::Playlist.find(self.owner_id, self.playlist_id)
-    self.update(
+    args = {
       score: HipsterScoreCalculator.score_playlist(@playlist),
       playlist_name: @playlist.name,
       owner_name: @playlist.owner.display_name,
       playlist_snapshot_id: @playlist.snapshot_id
-    )
+    }
+    if @playlist.public || self.owner_id != self.user.spotify_id
+      args[:spotify_url] = @playlist.external_urls["spotify"]
+    end
+    self.update(args)
   end
 
   private

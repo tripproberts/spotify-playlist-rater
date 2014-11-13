@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113200433) do
+ActiveRecord::Schema.define(version: 20141113205045) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20141113200433) do
     t.string   "playlist_snapshot_id"
     t.string   "playlist_name"
     t.string   "owner_name"
+    t.string   "spotify_url"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
