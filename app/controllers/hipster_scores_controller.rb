@@ -11,6 +11,12 @@ class HipsterScoresController < ApplicationController
       end,
       status: 200
     )
+    Pusher.url = "http://550381c30d6f8b253513:22939f4cb9b7a0b88da0@api.pusherapp.com/apps/95884"
+    Pusher['hipster_scores'].trigger('new_score', {
+      playlist_name: @hipster_score.playlist_name,
+      owner_name: @hipster_score.owner_name,
+      score: @hipster_score.score
+    })
   end
 
   private

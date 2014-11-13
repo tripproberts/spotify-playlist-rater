@@ -28,3 +28,23 @@ get.done(function(data) {
                                  + "</option>");
   });
 });
+
+var pusher = new Pusher('550381c30d6f8b253513');
+var channel = pusher.subscribe('hipster_scores');
+channel.bind('new_score', function(data) {
+  updateRecentList(data);
+});
+
+function updateRecentList(data) {
+  var playlist_name = data.playlist_name;
+  var owner_name = data.owner_name;
+  var score = data.score;
+  $('ul#recent').prepend(
+    "<li>" +
+    playlist_name +
+    " by " +
+    owner_name +
+    " - " +
+    score
+  );
+}
