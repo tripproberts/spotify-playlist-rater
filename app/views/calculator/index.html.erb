@@ -17,9 +17,9 @@
       <ul id="recent">
         <% HipsterScore.recent(10).each do |hipster_score| %>
           <% if hipster_score.spotify_url.blank? %>
-            <li><%= hipster_score.playlist_name %> by <%= hipster_score.owner_name %> - <%= hipster_score.score %></li>
+            <li><%= hipster_score.playlist_name %> by <%= hipster_score.owner_name %> - <%= score(hipster_score.score) %></li>
           <% else %>
-            <li><a target="_blank" href="<%=hipster_score.spotify_url%>"><%= hipster_score.playlist_name %></a> by <%= hipster_score.owner_name %> - <%= hipster_score.score %></li>
+            <li><a target="_blank" href="<%=hipster_score.spotify_url%>"><%= hipster_score.playlist_name %></a> by <%= hipster_score.owner_name %> - <%= score(hipster_score.score) %></li>
           <% end %>
         <% end %>
       </ul>
@@ -28,5 +28,4 @@
 </div>
 
 <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
-<script src="/assets/hipster_score_calculator.js"></script>
-
+<script src="/assets/calculator.js"></script>

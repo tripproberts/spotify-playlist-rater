@@ -1,4 +1,4 @@
-class HipsterScoreCalculator
+class Calculator
 
   def self.score_playlists_for(user)
     scores = []
@@ -26,10 +26,10 @@ class HipsterScoreCalculator
           --track_count
         end
       end
-      normalized = (score / playlist.tracks.count) / 70.70588235294117
+      normalized = (score / playlist.tracks.count) / 80
       return (1 - normalized) * 100
     else
-      raise HipsterScoreCalculatorError.new("Can't calculate hipster score for empty playlist")
+      raise CalculatorError.new("Can't calculate hipster score for empty playlist")
     end
   end
 
@@ -39,7 +39,7 @@ class HipsterScoreCalculator
       artists_score = score_artists(track.artists)
       return (0.5) * track_score + (0.5) * artists_score
     else
-      raise HipsterScoreCalculatorError.new("Can't calculate hipster score for nil track")
+      raise CalculatorError.new("Can't calculate hipster score for nil track")
     end
   end
 
@@ -51,7 +51,7 @@ class HipsterScoreCalculator
       end
       return score / artists.length
     else
-      raise HipsterScoreCalculatorError.new("Can't calculate hipster score for nil artist")
+      raise CalculatorError.new("Can't calculate hipster score for nil artist")
     end
   end
 

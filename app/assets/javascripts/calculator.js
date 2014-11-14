@@ -9,7 +9,7 @@ $('select#playlists').on('click', 'option', function() {
                     });
 
   post.done(function(data) {
-    $('h1#score').html(option.text() + " - " + data["score"]);
+    $('h1#score').html(option.text() + " - " + format_score(data["score"]));
   });
 
 });
@@ -38,7 +38,7 @@ channel.bind('new_score', function(data) {
 function updateRecentList(data) {
   var playlist_name = data.playlist_name;
   var owner_name = data.owner_name;
-  var score = data.score;
+  var score = format_score(data.score);
   var spotify_url = data.spotify_url;
   if (spotify_url) {
     $('ul#recent').prepend(
@@ -63,4 +63,8 @@ function updateRecentList(data) {
       score
     );
   }
+}
+
+function format_score(score) {
+  return score.toFixed(2);
 }

@@ -18,7 +18,7 @@ class HipsterScore < ActiveRecord::Base
     RSpotify.authenticate(ENV["SPOTIFY_ID"], ENV["SPOTIFY_SECRET"])
     @playlist = RSpotify::Playlist.find(self.owner_id, self.playlist_id)
     args = {
-      score: HipsterScoreCalculator.score_playlist(@playlist),
+      score: Calculator.score_playlist(@playlist),
       playlist_name: @playlist.name,
       owner_name: @playlist.owner.display_name,
       playlist_snapshot_id: @playlist.snapshot_id

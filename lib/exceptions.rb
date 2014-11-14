@@ -1,4 +1,4 @@
 module Exceptions
-  class HipsterScoreCalculatorError < StandardError; end
+  class CalculatorError < StandardError; end
   class SpotifySessionError < StandardError; end
 end
