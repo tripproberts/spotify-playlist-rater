@@ -1,5 +1,7 @@
 $('select#playlists').on('click', 'option', function() {
 
+  $('select#playlists').prop('disabled', 'disabled');
+
   var option = $(this);
 
   var post = $.post("/hipster_scores",
@@ -10,6 +12,7 @@ $('select#playlists').on('click', 'option', function() {
 
   post.done(function(data) {
     $('h1#score').html(option.text() + " - " + format_score(data["score"]));
+    $('select#playlists').prop('disabled', false);
   });
 
 });
