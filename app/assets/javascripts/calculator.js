@@ -1,21 +1,21 @@
-$('select#playlists').change(function() {
+function score_playlist(id, owner_id) {
 
   $('select#playlists').prop('disabled', 'disabled');
 
   var option = $(this);
 
-  var post = $.post("/hipster_scores",
-                    {
-                      owner_id: $(this).attr('data-owner-id'),
-                      playlist_id: $(this).attr('data-id')
-                    });
+  var get = $.get("/playlists?owner_id="
+                  + owner_id
+                  + "&id="
+                  + id
+                 );
 
-  post.done(function(data) {
+  get.done(function(data) {
     $('h1#score').html(option.text() + " - " + format_score(data["score"]));
     $('select#playlists').prop('disabled', false);
   });
 
-});
+};
 
 var get = $.get("/user/playlists");
 

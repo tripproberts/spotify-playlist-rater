@@ -115,7 +115,10 @@
 				optclass = 'class="' + classes + '" ';
 			}
 
-			return '<li ' + optclass + link + ' data-option data-value="' + el.value + '"><span>' + el.textContent + '</span></li>';
+      var owner = ' data-owner-id=' + el.getAttribute('data-owner-id');
+      var id = ' data-id=' + el.getAttribute('data-id');
+
+			return '<li ' + optclass + link + owner + id + ' data-option data-value="' + el.value + '"><span>' + el.textContent + '</span></li>';
 		};
 
 		[].slice.call( this.el.children ).forEach( function(el) {
@@ -263,6 +266,7 @@
 	 * change option - the new value is set
 	 */
 	SelectFx.prototype._changeOption = function() {
+
 		// if pre selected current (if we navigate with the keyboard)...
 		if( typeof this.preSelCurrent != 'undefined' && this.preSelCurrent !== -1 ) {
 			this.current = this.preSelCurrent;
@@ -271,6 +275,12 @@
 
 		// current option
 		var opt = this.selOpts[ this.current ];
+
+    // update score
+    score_playlist(
+      opt.getAttribute('data-id'),
+      opt.getAttribute('data-owner-id')
+    );
 
 		// update current selected value
 		this.selPlaceholder.textContent = opt.textContent;

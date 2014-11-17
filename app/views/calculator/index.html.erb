@@ -9,11 +9,11 @@
     <div class="col-sm-4">
       <h2>Recently Scored Playlists</h2>
       <ul id="recent">
-        <% HipsterScore.recent(10).each do |hipster_score| %>
-          <% if hipster_score.spotify_url.blank? %>
-            <li><%= hipster_score.playlist_name %> by <%= hipster_score.owner_name %> - <%= score(hipster_score.score) %></li>
+        <% HipsterScore.recent(10).includes(:playlist).each do |hipster_score| %>
+          <% if hipster_score.playlist.spotify_url.blank? %>
+            <li><%= hipster_score.playlist.playlist_name %> by <%= hipster_score.playlist.owner_name %> - <%= score(hipster_score.score) %></li>
           <% else %>
-            <li><a target="_blank" href="<%=hipster_score.spotify_url%>"><%= hipster_score.playlist_name %></a> by <%= hipster_score.owner_name %> - <%= score(hipster_score.score) %></li>
+            <li><a target="_blank" href="<%=hipster_score.playlist.spotify_url%>"><%= hipster_score.playlist.name %></a> by <%= hipster_score.playlist.owner_name %> - <%= score(hipster_score.score) %></li>
           <% end %>
         <% end %>
       </ul>
