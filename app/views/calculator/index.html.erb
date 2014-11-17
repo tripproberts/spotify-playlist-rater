@@ -1,19 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-offset-2 col-sm-4">
       <h1 id="score"></h1>
-    </div>
-  </div>
-  <h4 id="count"></h4>
-  <div class="row">
-    <div class="col-md-3">
-      <select multiple class="form-control" id="playlists">
+      <select class="cs-select cs-skin-elastic" id="playlists">
+        <option id="disabled" value="" disabled selected>Select a Playlist</option>
       </select>
     </div>
-  </div>
-  <div class="row">
-    <h3>Recently Scored Playlists</h3>
-    <div class="col-md-6">
+    <div class="col-sm-4">
+      <h2>Recently Scored Playlists</h2>
       <ul id="recent">
         <% HipsterScore.recent(10).each do |hipster_score| %>
           <% if hipster_score.spotify_url.blank? %>

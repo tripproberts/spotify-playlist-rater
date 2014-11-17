@@ -13,3 +13,70 @@
  *= require_tree .
  *= require_self
  */
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+
+ul#recent {
+  background: white;
+  border-radius: 4px;
+  padding: 20px 40px;
+  font-family: 'Droid Sans', sans-serif;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: #57534a;
+}
+
+.cs-skin-elastic .cs-options span {
+  padding: 0.8em 1em 0.8em 2em;
+}
+
+div.cs-select {
+  border: 0px;
+  color: #57534a;
+}
+
+span.cs-placeholder {
+  border-radius: 4px;
+  transition: border-bottom-left-radius 1s, border-bottom-right-radius 1s;
+  -webkit-transition: border-bottom-left-radius 1s, border-bottom-right-radius 1s;
+}
+
+.cs-skin-elastic .cs-options {
+  display: none;
+}
+
+.cs-skin-elastic.cs-active .cs-options ul li{
+}
+
+.cs-skin-elastic.cs-active .cs-options ul .cs-selected,
+.cs-skin-elastic.cs-active .cs-options ul li.cs-focus span,
+.cs-skin-elastic.cs-active .cs-options ul li:hover {
+  background: #84BD00;
+}
+
+.cs-skin-elastic.cs-active .cs-options ul .cs-selected span,
+.cs-skin-elastic.cs-active .cs-options ul .cs-focus span,
+.cs-skin-elastic.cs-active .cs-options ul li:hover span{
+  color: white;
+}
+
+.cs-active span.cs-placeholder {
+  border-bottom: 1px solid silver;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.cs-active .cs-options {
+  display: block;
+  background: white;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.cs-select:active,
+.cs-select:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}

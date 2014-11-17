@@ -1,4 +1,4 @@
-$('select#playlists').on('click', 'option', function() {
+$('select#playlists').change(function() {
 
   $('select#playlists').prop('disabled', 'disabled');
 
@@ -20,7 +20,7 @@ $('select#playlists').on('click', 'option', function() {
 var get = $.get("/user/playlists");
 
 get.done(function(data) {
-  $('h4#count').html(data["total"] + " playlists");
+  $('option#disabled').append(" (" + data["total"] + " total)");
   $.each(data["playlists"], function(i, val) {
     $('select#playlists').append("<option data-id='"
                                  + val["id"]
@@ -30,6 +30,11 @@ get.done(function(data) {
                                  + val["name"]
                                  + "</option>");
   });
+  (function() {
+    [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+      new SelectFx(el);
+    });
+  })();
 });
 
 var pusher = new Pusher('550381c30d6f8b253513');
