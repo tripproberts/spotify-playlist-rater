@@ -1,6 +1,7 @@
 class HipsterScore < ActiveRecord::Base
 
   belongs_to :user
+  belongs_to :playlist
 
   scope :recent, ->(num) { order('updated_at DESC').limit(num) }
 
