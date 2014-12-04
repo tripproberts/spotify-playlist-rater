@@ -1,12 +1,13 @@
-class PlaylistsController < ApplicationController
+class ScoresController < ApplicationController
   before_filter :ensure_spotify_authorized
 
-  def show
+  def create
     @playlist = Playlist.where(playlist_params).first_or_create
     @playlist.update_attributes
     @score = @playlist.score
     render(
       json: Jbuilder.encode do |j|
+        j.name @playlist.name
         j.score @score
         j.id @playlist.spotify_id
         j.owner_id @playlist.owner_id

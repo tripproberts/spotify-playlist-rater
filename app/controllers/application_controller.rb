@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
     RSpotify::User.new(user.spotify_hash)
   end
 
+  def redirect
+    redirect_to new_score_path
+  end
+
 end
