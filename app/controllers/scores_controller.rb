@@ -4,11 +4,13 @@ class ScoresController < ApplicationController
   def create
     @playlist = Playlist.where(playlist_params).first_or_create
     @playlist.update_attributes
-    @score = @playlist.score
+    score_params = hipster_score_params.merge(playlist: @playlist)
+    @hipster_score = HipsterScore.create(score_params)
+    @hipster_score.calculate_score
     render(
       json: Jbuilder.encode do |j|
         j.name @playlist.name
-        j.score @score
+        j.score @hipster_score.score
         j.id @playlist.spotify_id
         j.owner_id @playlist.owner_id
       end,
@@ -19,17 +21,21 @@ class ScoresController < ApplicationController
       spotify_url: @playlist.spotify_url,
       playlist_name: @playlist.name,
       owner_name: @playlist.owner_name,
-      score: @score
+      score: @hipster_score.score
     })
   end
 
   private
 
   def playlist_params
-    params[:user_id] = current_user.id
     params[:spotify_id] = params[:id]
     params.delete(:id)
-    params.permit(:spotify_id, :owner_id, :user_id)
+    params.permit(:spotify_id, :owner_id)
+  end
+
+  def hipster_score_params
+    params[:user_id] = current_user.id
+    params.permit(:user_id)
   end
 
 end
