@@ -4,7 +4,28 @@ class HipsterScore < ActiveRecord::Base
   belongs_to :user
 
   scope :recent, ->(num) { order('updated_at DESC').limit(num) }
-  scope :top, ->(num) { order('score DESC').limit(num) }
+
+  def self.top(num)
+    score_list = []
+    playlist_list = []
+    sorted_scores = HipsterScore.order('score DESC').includes(:playlist)
+    total_score_count = HipsterScore.count
+    counter = 0
+    num.times do
+      current_score = sorted_scores[counter]
+      while (counter < total_score_count &&
+          playlist_list.include?(current_score.playlist))
+        counter += 1
+        current_score = sorted_scores[counter]
+      end
+      if (counter == total_score_count)
+        return score_list
+      end
+      playlist_list << current_score.playlist
+      score_list << current_score
+    end
+    score_list
+  end
 
   def calculate_score
     RSpotify.authenticate(ENV["SPOTIFY_ID"], ENV["SPOTIFY_SECRET"])
