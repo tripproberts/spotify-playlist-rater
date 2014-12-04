@@ -1,0 +1,18 @@
+<tr>
+  <td class="scale">
+    <div class="progress">
+      <div class="progress-bar" style="width: <%=score(hipster_score.score)%>%"></div>
+    </div>
+  </td>
+  <td class="score"> <h3><%= score(hipster_score.score) %></h3> </td>
+  <td class="playlist-name">
+    <% if !hipster_score.playlist.spotify_url.blank? %>
+      <a target="_blank" href="<%=hipster_score.playlist.spotify_url%>">
+        <h3><%= hipster_score.playlist.name %></h3>
+      </a>
+    <% else %>
+      <h3><%= hipster_score.playlist.name %></h3>
+    <% end %>
+    <p><%= hipster_score.playlist.owner_name %></p>
+  </td>
+</tr>

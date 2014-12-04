@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="full">
+<html>
 <head>
   <title>Hipster</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -9,6 +9,45 @@
 <body>
 
 <%= yield %>
+
+<section id="recent">
+  <header>
+    <h2>Recent Playlists</h2>
+  </header>
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      <table>
+        <tbody>
+          <% HipsterScore.recent(5).includes(:playlist).each do |hipster_score| %>
+            <%= render 'calculator/table_row', hipster_score: hipster_score %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="top">
+  <header>
+    <h2>Top Scoring Playlists</h2>
+  </header>
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      <table>
+        <tbody>
+          <% HipsterScore.top(10).includes(:playlist).each do |hipster_score| %>
+            <%= render 'calculator/table_row', hipster_score: hipster_score %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+<p>Made by Tripp Roberts</p>
+</footer>
+
 
 </body>
 </html>

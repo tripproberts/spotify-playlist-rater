@@ -14,18 +14,64 @@
  *= require_self
  */
 
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 
-ul#recent {
-  background: white;
+body,
+h1,
+h2 {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+
+section#intro {
+  text-align: center;
+  padding: 150px 20px 160px;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 60%;
+  background: url('bg.jpg') 50% 50% no-repeat;
+  background-size: cover;
+}
+
+section#top {
+  background: #2b2525;
+}
+
+section#recent {
+  background: #fd6154;
+}
+
+section header {
+  padding: 50px 20px;
+}
+
+footer {
+  padding: 20px 0 100px 0;
+  color: #5d5858;
+}
+
+footer p {
+  text-align: center;
+}
+
+table {
   border-radius: 4px;
-  padding: 20px 40px;
-  font-family: 'Droid Sans', sans-serif;
-  text-transform: uppercase;
+  height: 234px;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+h1 {
+  font-size: 60px;
 }
 
 h2 {
-  color: #57534a;
+  font-size: 40px;
+}
+
+h1, h2 {
+  text-align: center;
 }
 
 .cs-skin-elastic .cs-options span {
@@ -45,9 +91,6 @@ span.cs-placeholder {
 
 .cs-skin-elastic .cs-options {
   display: none;
-}
-
-.cs-skin-elastic.cs-active .cs-options ul li{
 }
 
 .cs-skin-elastic.cs-active .cs-options ul .cs-selected,
@@ -73,10 +116,137 @@ span.cs-placeholder {
   background: white;
   height: 400px;
   overflow-y: scroll;
+  padding-bottom: 0px;
 }
 
 .cs-select:active,
 .cs-select:focus {
   box-shadow: none;
   -webkit-box-shadow: none;
+}
+
+footer {
+  height: 80px;
+  background: rgb(32, 25, 25);
+}
+
+table tr {
+  height: 40px;
+  border-bottom: 1px solid rgb(189, 189, 189);
+}
+
+section#recent table tr {
+  border-bottom: 1px solid rgb(81, 73, 73);
+}
+
+table thead th {
+  padding-bottom: 5px;
+}
+
+table th,
+table td {
+  padding: 0 10px;
+  overflow: hidden; text-overflow: ellipsis;
+}
+
+.progress {
+  margin-bottom: 0px;
+  margin-top: 10px;
+  background-color: #FFFFFF;
+}
+
+.progress-bar {
+  background-color: #84BD00;
+}
+
+section#recent .progress-bar {
+  background-color: #514949;
+}
+
+section#recent a {
+  color: #514949;
+}
+
+section#recent a:hover {
+  color: black;
+}
+
+table td.scale {
+  min-width: 70px;
+}
+
+a {
+  color: #84BD00;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #537700;
+}
+
+table thead tr {
+  border-bottom: 2px solid #BDBDBD;
+  vertical-align: bottom;
+}
+
+div.cs-select {
+  max-width: none;
+  margin-bottom: 50px;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.cs-skin-elastic > span {
+  background: rgba(255,255,255,0.85);
+  text-align: center;
+}
+
+section#intro h1 {
+  margin-bottom: 30px;
+  line-height: 70px;
+}
+
+td.scale {
+  width: 150px;
+}
+
+td.score {
+  width: 100px;
+}
+
+.btn {
+  border-radius: 44px;
+  padding: 20px 29px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 30px;
+  color: white;
+  font-weight: 300;
+}
+
+.btn:hover {
+  background-color: white;
+}
+
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+#spinner .spinner {
+  margin-top: -20px;
+}
+
+section#intro .content {
+  min-height: 364px;
+}
+
+table {
+  table-layout: fixed;
+}
+
+td.playlist-name h3,
+h1#playlist-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
