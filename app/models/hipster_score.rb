@@ -3,6 +3,7 @@ class HipsterScore < ActiveRecord::Base
   belongs_to :playlist
 
   scope :recent, ->(num) { order('updated_at DESC').limit(num) }
+  scope :top, ->(num) { order('score DESC').limit(num) }
 
   def calculate_score
     RSpotify.authenticate(ENV["SPOTIFY_ID"], ENV["SPOTIFY_SECRET"])
