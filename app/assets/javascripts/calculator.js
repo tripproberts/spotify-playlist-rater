@@ -92,7 +92,8 @@ function score_playlist(name, id, owner_id) {
   $('h1#playlist-name').html("Calculating " + name + "...");
   $('section#intro h1#playlist-score').hide();
   $('.cs-placeholder').hide('slow');
-  spinner.spin();
+  var spinner = new Spinner(opts).spin();
+  $('section#intro #spinner').append(spinner.el);
 
   var option = $(this);
 
@@ -102,6 +103,7 @@ function score_playlist(name, id, owner_id) {
   });
 
   post.done(function(data) {
+    spinner.stop();
     $('h1#playlist-name').html(name);
     $('section#intro h1#playlist-score').show();
     $('h1#playlist-score b').html(format_score(data["score"]));
