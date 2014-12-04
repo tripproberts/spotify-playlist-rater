@@ -16,6 +16,7 @@ class HipsterScore < ActiveRecord::Base
     else
       self.update(score: @previous_score.score)
     end
+    self.update(playlist_snapshot_id: @r_playlist.snapshot_id)
   end
 
 end
