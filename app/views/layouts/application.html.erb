@@ -12,10 +12,10 @@
 
 <section id="recent">
   <header>
-    <h2>Recent Playlists</h2>
+    <h2>Recently Scored Playlists</h2>
   </header>
   <div class="row">
-    <div class="col-sm-offset-2 col-sm-8">
+    <div class="col-md-offset-2 col-md-8">
       <table>
         <tbody>
           <% HipsterScore.recent(5).includes(:playlist).each do |hipster_score| %>
@@ -32,10 +32,10 @@
     <h2>Top Scoring Playlists</h2>
   </header>
   <div class="row">
-    <div class="col-sm-offset-2 col-sm-8">
+    <div class="col-md-offset-2 col-md-8">
       <table>
         <tbody>
-          <% HipsterScore.top(10).includes(:playlist).each do |hipster_score| %>
+          <% HipsterScore.top(10).each do |hipster_score| %>
             <%= render 'calculator/table_row', hipster_score: hipster_score %>
           <% end %>
         </tbody>
