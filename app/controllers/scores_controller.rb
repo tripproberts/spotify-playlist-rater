@@ -6,23 +6,27 @@ class ScoresController < ApplicationController
     @playlist.update_attributes
     score_params = hipster_score_params.merge(playlist: @playlist)
     @hipster_score = HipsterScore.create(score_params)
-    @hipster_score.calculate_score
+    Delayed::Job.enqueue(ScorePlaylistJob.new(@hipster_score.id))
     render(
       json: Jbuilder.encode do |j|
+        j.id @hipster_score.id
+      end,
+      status: 200
+    )
+  end
+
+  def show
+    @hipster_score = HipsterScore.find(params[:id])
+    @playlist = @hipster_score.playlist
+    render(
+      json: Jbuilder.encode do |j|
+        j.id @playlist.spotify_id
         j.name @playlist.name
         j.score @hipster_score.score
-        j.id @playlist.spotify_id
         j.owner_id @playlist.owner_id
       end,
       status: 200
     )
-    Pusher.url = "http://550381c30d6f8b253513:22939f4cb9b7a0b88da0@api.pusherapp.com/apps/95884"
-    Pusher['hipster_scores'].trigger('new_score', {
-      spotify_url: @playlist.spotify_url,
-      playlist_name: @playlist.name,
-      owner_name: @playlist.owner_name,
-      score: @hipster_score.score
-    })
   end
 
   private

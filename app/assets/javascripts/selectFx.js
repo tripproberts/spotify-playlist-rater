@@ -279,7 +279,7 @@
 
     // added by TRIPP
     // update score
-    score_playlist(
+    scorePlaylist(
       opt.getAttribute('data-value'),
       opt.getAttribute('data-id'),
       opt.getAttribute('data-owner-id')

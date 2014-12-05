@@ -87,7 +87,7 @@ function format_score(score) {
   return score.toFixed(2);
 }
 
-function score_playlist(name, id, owner_id) {
+function scorePlaylist(name, id, owner_id) {
 
   if ($("a#share").length) {
     $("a#share").hide();
@@ -106,6 +106,23 @@ function score_playlist(name, id, owner_id) {
   });
 
   post.done(function(data) {
+    pollForScore(data["id"]);
+  });
+
+  function pollForScore(id) {
+    var get = $.get("/scores/" + id);
+    get.done(function(data) {
+      if (data["score"] != 0.0) {
+        updatePageWithScore(data);
+      } else {
+        setTimeout(function() {
+          pollForScore(id)
+        }, 3000);
+      }
+    });
+  }
+
+  function updatePageWithScore(data) {
     spinner.stop();
     $('h1#playlist-name').html(name);
     $('section#intro h1#playlist-score').show();
@@ -120,19 +137,17 @@ function score_playlist(name, id, owner_id) {
                            + url
                            + "'>Share on Facebook</a>");
     }
-  });
-
-  $('section#intro').on('click', "a#share", function(e) {
-    e.preventDefault();
-    share(window.location.host + $(this).attr("href"));
-  });
-
-  function share(url) {
-    FB.ui({
-        method: 'share',
-          href: url,
-    }, function(response){});
   }
+}
 
-};
+function share(url) {
+  FB.ui({
+    method: 'share',
+    href: url,
+  }, function(response){});
+}
 
+$('section#intro').on('click', "a#share", function(e) {
+  e.preventDefault();
+  share(window.location.host + $(this).attr("href"));
+});
