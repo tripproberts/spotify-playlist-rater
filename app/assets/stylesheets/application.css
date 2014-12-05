@@ -311,8 +311,13 @@ nav.navbar ul li a.btn:hover {
   background-color: white;
 }
 
-nav li a#to-top {
+nav li#to-top a {
   width: 42px;
+}
+
+nav li#to-top.active a {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
 }
 
 .navbar-nav>li {
@@ -322,6 +327,8 @@ nav li a#to-top {
 .navbar-right {
   float: right;
 }
+
+
 
 @media screen and (max-width: 700px) {
   h1 {
