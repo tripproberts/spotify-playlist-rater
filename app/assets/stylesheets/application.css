@@ -320,6 +320,11 @@ nav li#to-top.active a {
   color: white;
 }
 
+nav li#to-top.active a:hover {
+  background-color: white;
+  color: #333;
+}
+
 .navbar-nav>li {
   float: left;
 }
