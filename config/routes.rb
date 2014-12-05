@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/auth/spotify/callback', to: 'spotify_sessions#create'
   post '/scores', to: 'scores#create'
   get '/user/playlists', to: 'users#playlists'
+  get '/playlists/:spotify_id', to: 'playlists#show', as: 'playlist'
 end

@@ -2,6 +2,10 @@ class Playlist < ActiveRecord::Base
 
   has_many :hipster_scores
 
+  def score
+    hipster_scores.last.score
+  end
+
   def update_attributes
     RSpotify.authenticate(ENV["SPOTIFY_ID"], ENV["SPOTIFY_SECRET"])
     @r_playlist = RSpotify::Playlist.find(owner_id, spotify_id)
