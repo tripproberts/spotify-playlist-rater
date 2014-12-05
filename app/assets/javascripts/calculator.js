@@ -89,11 +89,14 @@ function format_score(score) {
 
 function score_playlist(name, id, owner_id) {
 
+  if ($("a#share").length) {
+    $("a#share").hide();
+  }
   $('h1#playlist-name').html("Calculating " + name + "...");
-  $('section#intro h1#playlist-score').hide();
   $('.cs-placeholder').hide('slow');
   var spinner = new Spinner(opts).spin();
   $('section#intro #spinner').append(spinner.el);
+  $('section#intro h1#playlist-score').hide();
 
   var option = $(this);
 
@@ -108,7 +111,28 @@ function score_playlist(name, id, owner_id) {
     $('section#intro h1#playlist-score').show();
     $('h1#playlist-score b').html(format_score(data["score"]));
     $('.cs-placeholder').show('slow');
+    var url = "/playlists/" + data["id"];
+    if ($("a#share").length) {
+      $("a#share").show();
+      $("a#share").attr("href", url);
+    } else {
+      $(".dynamic").append("<a class='btn' id='share' href='"
+                           + url
+                           + "'>Share on Facebook</a>");
+    }
   });
+
+  $('section#intro').on('click', "a#share", function(e) {
+    e.preventDefault();
+    share(window.location.host + $(this).attr("href"));
+  });
+
+  function share(url) {
+    FB.ui({
+        method: 'share',
+          href: url,
+    }, function(response){});
+  }
 
 };
 

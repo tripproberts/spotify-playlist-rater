@@ -14,3 +14,5 @@
 //= require jquery_ujs
 //= require classie
 //= require selectFx
+//= require bootstrap.min
+

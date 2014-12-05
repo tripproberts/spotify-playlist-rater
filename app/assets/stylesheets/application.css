@@ -16,6 +16,10 @@
 
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 
+body {
+  position: relative;
+}
+
 body,
 h1,
 h2 {
@@ -191,7 +195,7 @@ table thead tr {
 
 div.cs-select {
   max-width: none;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   font-size: 30px;
   font-weight: 300;
 }
@@ -202,7 +206,7 @@ div.cs-select {
 }
 
 section#intro h1 {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   line-height: 70px;
 }
 
@@ -216,11 +220,30 @@ td.score {
 
 .btn {
   border-radius: 44px;
-  padding: 20px 29px;
+  padding: 14px 29px 20px 29px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   font-size: 30px;
   color: white;
   font-weight: 300;
+}
+
+.btn#sign-in {
+  margin-top: 40px;
+}
+
+.btn:active,
+.btn:active:focus,
+.btn:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+.btn:focus {
+  color: white;
+}
+
+.btn:focus:hover {
+  color: black;
 }
 
 .btn:hover {
@@ -236,8 +259,8 @@ td.score {
   margin-top: -20px;
 }
 
-section#intro .content {
-  min-height: 364px;
+section#intro .dynamic {
+  min-height: 426px;
 }
 
 table {
@@ -249,4 +272,67 @@ h1#playlist-name {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.btn#share {
+  margin-top: 20px;
+}
+
+nav.navbar {
+  background-color: rgba(0, 0, 0, 0.0);
+  border-bottom: none;
+  padding-top: 20px;
+}
+
+nav.navbar ul {
+  padding-right: 20px;
+}
+
+nav.navbar ul li {
+  padding-right: 20px;
+}
+
+nav.navbar ul li a.btn {
+  color: white;
+  font-size: 11px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.navbar-default .navbar-nav>li>a:focus {
+  color: white;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: #333;
+}
+
+nav.navbar ul li a.btn:hover {
+  background-color: white;
+}
+
+nav li a#to-top {
+  width: 42px;
+}
+
+.navbar-nav>li {
+  float: left;
+}
+
+.navbar-right {
+  float: right;
+}
+
+@media screen and (max-width: 700px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  td.scale {
+    width: 75px;
+  }
+
+  td.score {
+    width: 80px;
+  }
 }

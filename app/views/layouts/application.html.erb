@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hipster</title>
+  <title>Playlist Rater</title>
+  <% if @playlist %>
+    <meta property="og:url" content="http://hipster-rate.me/playlists/<%= @playlist.spotify_id %>" />
+    <meta property="og:title" content="Spotify Playlist Rater" />
+    <meta property="og:description" content="How hipster are your playlists? My playlist, <%= @playlist.name %>, scored a <%= @playlist.score %>" />
+  <% end %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </head>
-<body>
+
+<body data-spy="scroll" data-target="#navbar">
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+  <ul class="nav navbar-nav navbar-right">
+    <li class="active"><a class="btn" href="#intro" id="to-top"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a></li>
+    <li><a class="btn" href="#recent">Recent Playlists</a></li>
+    <li><a class="btn" href="#top">Top Playlists</a></li>
+  </ul>
+</nav>
 
 <%= yield %>
 
@@ -18,7 +32,7 @@
     <div class="col-md-offset-2 col-md-8">
       <table>
         <tbody>
-          <% HipsterScore.recent(5).includes(:playlist).each do |hipster_score| %>
+          <% HipsterScore.recent(10).includes(:playlist).each do |hipster_score| %>
             <%= render 'calculator/table_row', hipster_score: hipster_score %>
           <% end %>
         </tbody>
@@ -26,6 +40,8 @@
     </div>
   </div>
 </section>
+
+<script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
 
 <section id="top">
   <header>
@@ -50,4 +66,15 @@
 
 
 </body>
+<!-- enable gradual transition on nav click -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/1.4.3/jquery.scrollTo.min.js"></script>
+<script>
+  $(function() {
+    $('#navbar').bind('click', 'ul li a', function(event) {
+      event.preventDefault()
+      $.scrollTo(event.target.hash, 250);
+    });
+  });
+</script>
+<!-- end enable gradual transition on nav click -->
 </html>
