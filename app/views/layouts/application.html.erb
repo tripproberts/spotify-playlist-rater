@@ -7,6 +7,7 @@
     <meta property="og:title" content="Spotify Playlist Rater" />
     <meta property="og:description" content="How hipster are your playlists? My playlist, <%= @playlist.name %>, scored a <%= @playlist.score %>" />
   <% end %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
