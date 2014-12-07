@@ -2,12 +2,10 @@
 <html>
 <head>
   <title>Playlist Rater</title>
-  <% if @playlist %>
-    <meta property="og:url" content="http://hipster-rate.me/playlists/<%= @playlist.spotify_id %>" />
-    <meta property="og:title" content="Spotify Playlist Rater" />
-    <meta property="og:description" content="How hipster are your playlists? My playlist, <%= @playlist.name %>, scored a <%= @playlist.score %>" />
-  <% end %>
+  <meta property="og:title" content="How hipster are your Spotify playlists?" />
+  <meta property="og:description" content="Check out my playlist's score and score your own playlists." />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
