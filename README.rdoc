@@ -1,28 +1,9 @@
-== README
+=Spotify Playlist Rater
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app uses Spotify's web API to rate users' playlists on a hipster scale.
 
-Things you may want to cover:
+{Delayed Job}[https://github.com/collectiveidea/delayed_job] is used for handling scoring playlists.
 
-* Ruby version
+The {RSpotify gem}[https://github.com/guilhermesad/rspotify] is used for communicating with Spotify.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Pusher[http://pusher.com/] is used for live updating recently scored playlists.
