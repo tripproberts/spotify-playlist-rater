@@ -20,8 +20,9 @@ class Calculator
     track_count = playlist.tracks.count
     if track_count > 0
       playlist.tracks.each do |track|
-        if !track.available_markets.blank?
-          score += ((0.5) * track.popularity) + ((0.5) * score_artists(track.artists))
+        if track.id != nil
+          track_score = ((0.5) * track.popularity) + ((0.5) * score_artists(track.artists))
+          score += track_score
         else
           --track_count
         end
@@ -45,9 +46,14 @@ class Calculator
 
   def self.score_artists(artists)
     if artists != nil
+      count = artists.length
       score = 0
       artists.each do |artist|
-        score += score_artist(artist)
+        if artist.id != nil
+          score += score_artist(artist)
+        else
+          --count
+        end
       end
       return score / artists.length
     else
