@@ -17,4 +17,10 @@ class Playlist < ActiveRecord::Base
     self.update(args)
   end
 
+  def tracks
+    RSpotify.authenticate(ENV["SPOTIFY_ID"], ENV["SPOTIFY_SECRET"])
+    @r_playlist = RSpotify::Playlist.find(owner_id, spotify_id)
+    @r_playlist.tracks
+  end
+
 end
