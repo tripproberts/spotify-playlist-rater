@@ -24,7 +24,7 @@ class Calculator
           track_score = ((0.5) * track.popularity) + ((0.5) * score_artists(track.artists))
           score += track_score
         else
-          --track_count
+          track_count -= 1
         end
       end
       if (track_count != 0)
